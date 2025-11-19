@@ -75,7 +75,7 @@ class WarehouseDemo(ParallelEnv):
             if counter[p] == 1:
                 self._positions[a] = p
             else:
-                rewards[a] -= 0.5
+                rewards[a] -= 10.0  # penalità per collisione
 
             r, c = self._positions[a]
             if self.grid[r, c] == 2:
