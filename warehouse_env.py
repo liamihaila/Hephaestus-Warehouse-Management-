@@ -134,7 +134,7 @@ class WarehouseTasksEnv(ParallelEnv):
         for k in range(self.n_inbound_tasks):
             tid = k
             self._task_src[tid] = self.inbound_pos
-            self._task_dst[tid] = self.rng.choice(self.shelf_slots)
+            self._task_dst[tid] = tuple(self.rng.choice(self.shelf_slots))
             self._task_active[tid] = False
             self._inbound_queue.append(tid)
 
@@ -304,6 +304,8 @@ class WarehouseTasksEnv(ParallelEnv):
             return 0.0, 0
         pos = self._positions[agent]
         dst = self._task_dst[tid]
+        if not isinstance(dst, tuple):
+            dst = tuple(dst)
         if pos == dst:
             # Successful delivery
             self._cargo[agent] = None

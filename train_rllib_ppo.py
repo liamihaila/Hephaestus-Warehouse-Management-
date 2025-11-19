@@ -2,7 +2,7 @@
 from ray.rllib.algorithms.ppo import PPOConfig
 from ray.rllib.env.wrappers.pettingzoo_env import ParallelPettingZooEnv
 from ray import air, tune
-from your_env_file import WarehouseTasksEnv  # path to the canvas file
+from warehouse_env import WarehouseTasksEnv  # path to the canvas file
 
 def env_creator(_):
     return ParallelPettingZooEnv(
